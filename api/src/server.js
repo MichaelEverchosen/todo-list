@@ -32,8 +32,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to your api server" });
 });
 // routes
-require('./routes/auth/auth.routes')(app);
-require('./routes/auth/user.routes')(app);
+require("./routes/auth/auth.routes")(app);
+require("./routes/auth/user.routes")(app);
 require("./routes/todo.routes")(app);
 
 // set port, listen for requests
@@ -47,14 +47,14 @@ app.listen(PORT, () => {
 function initial() {
   Role.create({
     id: 1,
-    name: "user"
+    name: "user",
   });
   Role.create({
     id: 2,
-    name: "moderator"
+    name: "moderator",
   });
   Role.create({
     id: 3,
-    name: "admin"
+    name: "admin",
   });
 }
