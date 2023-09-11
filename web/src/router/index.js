@@ -1,21 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Authorization from '@/views/auth/authorization.vue'
+import Registration from '@/views/auth/registration.vue'
+import TodoList from '@/views/todo-list.vue'
+import TodoForm from '@/views/todo-form.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'todo-list',
+      component: TodoList
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/todo-form',
+      name: 'todo-form',
+      component: TodoForm,
+      children: [
+        {
+          path: ':id',
+          name: 'todo-form-edit',
+          component: TodoForm
+        }
+      ]
+    },
+    {
+      path: '/auth/sign-in',
+      name: 'sign-in',
+      component: Authorization
+    },
+    {
+      path: '/auth/sign-up',
+      name: 'sign-up',
+      component: Registration
     }
   ]
 })
